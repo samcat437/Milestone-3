@@ -5,4 +5,4 @@ from avonstringquartetreviews.models import Review
 
 @app.route("/")
 def home():
-    return render_template("base.html")
+    return render_template("reviews.html")
