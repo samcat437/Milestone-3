@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h3 class="center-align">Add a Review</h3>
+<h3 class="center-align">Add Event Details</h3>
 <!-- add icons -->
 <div class="row">
     <form class="col s12" method="POST" action="{{ url_for('add_review') }}">
@@ -9,7 +9,7 @@
             <div class="input-field col s12">
                 <input id="review_name" name="review_name" type="text" minlenghth="3" maxlength="50" class="validate"
                     required>
-                <label for="review_name">Please Name Your Review</label>
+                <label for="review_name">Name your Event</label>
             </div>
         </div>
         <div class="row">
@@ -34,21 +34,36 @@
             <div class="input-field col s12">
                 <i class="fas fa-calendar-alt prefix light-blue-text text-darken-4"></i>
                 <input id="wedding_date" name="wedding_date" type="text" class="datepicker validate" required>
+                <label for="wedding_date">Event Date</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-calendar-alt prefix light-blue-text text-darken-4"></i>
+                <input id="wedding_date" name="wedding_date" type="text" class="datepicker validate" required>
                 <label for="wedding_date">Wedding Date</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <input id="venue" name="venue" type="text" minlenghth="3" maxlength="25" class="validate" required>
-                <label for="venue">Venue</label>
+                <i class=""></i>
+                <input id="start-time" name="start-time" type="text" class="timepicker validate" required>
+                <label for="start-time">Start Time</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class=""></i>
+                <input id="end-time" name="end-time" type="text" class="datepicker validate" required>
+                <label for="end-time">End Time</label>
             </div>
         </div>
         <div class="row">
             <form class="col s12">
                 <div class="input-field col s12">
-                    <textarea id="review-content" name="review-content" class="materialize-textarea"
+                    <textarea id="special-content" name="special-content" class="materialize-textarea"
                         required></textarea>
-                    <label for="review-content">How did we do?</label>
+                    <label for="special-content">Is there anything else special happening that we need to know about?</label>
                 </div>
             </form>
         </div>

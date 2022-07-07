@@ -10,6 +10,8 @@
     crossorigin="anonymous" referrerpolicy="no-referrer">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
   <title>Avon String Quartet Reviews</title>
 </head>
@@ -17,14 +19,14 @@
 <body>
   <header>
     <!-- top navbar -->
-    <nav class="indigo lighten-3">
+    <nav class="">
       <div class="nav-wrapper">
         <a href="{{ url_for('home') }}" class="brand-logo">Avon String Quartet Reviews</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
         <ul class="right hide-on-med-and-down">
           <li><a href="{{ url_for('home') }}">Home</a></li>
-          <li><a href="">Log In</a></li>
-          <li><a href="">My Wedding</a></li>
+          <li><a href="{{ url_for('login') }}">Log In</a></li>
+          <li><a href="{{ url_for('my_wedding') }}">My Wedding</a></li>
           <li><a href="{{ url_for('add_review') }}">Write a Review</a></li>
         </ul>
       </div>
@@ -32,8 +34,8 @@
     <!-- mobile navbar -->
     <ul class="sidenav" id="mobile-demo">
       <li><a href="{{ url_for('home') }}">Home</a></li>
-      <li><a href="">Log In</a></li>
-      <li><a href="">My Wedding</a></li>
+      <li><a href="{{ url_for('login') }}">Log In</a></li>
+      <li><a href="{{ url_for('my_wedding') }}">My Wedding</a></li>
       <li><a href="{{ url_for('add_review') }}">Write a Review</a></li>
     </ul>
   </header>

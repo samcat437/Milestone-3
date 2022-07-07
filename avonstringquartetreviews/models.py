@@ -11,7 +11,7 @@ class Review(db.Model):
     review_date = db.Column(db.Date, nullable=False)
     review_venue = db.Column(db.String(25), unique=False)
     review_content = db.Column(db.Text, nullable=False)
-    category_id = db.Column(db.Integer, db.ForeignKey(), nullable=False)
+
 
     def __repr__(self): 
         # __repr__ to represent itself in the form of a string

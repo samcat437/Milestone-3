@@ -10,7 +10,7 @@ def home():
 
 @app.route("/reviews")
 def reviews():
-    reviews = list(Review.query.order_by(Review.review_venue).all())
+    reviews = list(Review.query.order_by(Review.review_name).all())
     return render_template("reviews.html", reviews=reviews)
 
 
@@ -29,5 +29,15 @@ def add_review():
         db.session.add(review)
         db.session.commit()
         # not redirecting 
-        return redirect(url_for("reviews")) 
+        return redirect(url_for("home")) 
     return render_template("add_review.html")
+
+
+@app.route("/login")
+def login(): 
+    return render_template("login.html")
+
+
+@app.route("/my_wedding")
+def my_wedding(): 
+    return render_template("my_wedding.html")
