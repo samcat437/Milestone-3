@@ -1,16 +1,19 @@
-from flask import render_template, request, redirect, url_for
-from avonstringquartetreviews import app, db
-from avonstringquartetreviews.models import Review
+from flask import (
+    flash, render_template, request, redirect, session, url_for)
+from bson.objectid import ObjectId
+from werkzeug.security import generate_password_hash, check_password_hash
+from avonstringquartetreviews import app, db, mongo
+from avonstringquartetreviews.models import Review, Users
 
+
+
+# def home():
+#     return render_template("reviews.html")
 
 @app.route("/")
-def home():
-    return render_template("reviews.html")
-
-
-@app.route("/reviews")
-def reviews():
-    reviews = list(Review.query.order_by(Review.review_name).all())
+@app.route("/get_reviews")
+def get_reviews():
+    reviews = mongo.db.reviews.find()
     return render_template("reviews.html", reviews=reviews)
 
 
