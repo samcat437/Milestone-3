@@ -3,18 +3,18 @@ from flask import (
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 from avonstringquartetreviews import app, db, mongo
-from avonstringquartetreviews.models import Review, Users
+from avonstringquartetreviews.models import Review #Users
 
-
-
-# def home():
-#     return render_template("reviews.html")
 
 @app.route("/")
-@app.route("/get_reviews")
-def get_reviews():
-    reviews = mongo.db.reviews.find()
-    return render_template("reviews.html", reviews=reviews)
+def home():
+    return render_template("reviews.html")
+
+
+# @app.route("/get_reviews")
+# def get_reviews():
+#     reviews = mongo.db.reviews.find()
+#     return render_template("reviews.html", reviews=reviews)
 
 
 @app.route("/add_review", methods=["GET", "POST"])
