@@ -1,20 +1,20 @@
 from flask import (
     flash, render_template, request, redirect, session, url_for)
-from bson.objectid import ObjectId
-from werkzeug.security import generate_password_hash, check_password_hash
+# from bson.objectid import ObjectId
+# from werkzeug.security import generate_password_hash, check_password_hash
 from avonstringquartetreviews import app, db, mongo
-from avonstringquartetreviews.models import Review #Users
+from avonstringquartetreviews.models import Review 
 
 
 @app.route("/")
 def home():
     return render_template("reviews.html")
 
-
-# @app.route("/get_reviews")
-# def get_reviews():
-#     reviews = mongo.db.reviews.find()
-#     return render_template("reviews.html", reviews=reviews)
+# not working
+@app.route("/reviews")
+def reviews():
+    reviews = list(Review.query.order_by(Review.review_name).all())
+    return render_template("reviews.html", reviews=reviews)
 
 
 @app.route("/add_review", methods=["GET", "POST"])
@@ -22,12 +22,12 @@ def add_review():
     if request.method == "POST":
         review = Review(
             review_name=request.form.get("review_name"),
-            review_first_name=request.form.get("review_first_name"),
-            review_last_name=request.form.get("review_last_name"),
-            review_date=request.form.get("review_date"),
-            review_email=request.form.get("review_email"),
-            review_venue=request.form.get("review_venue"),
-            review_content=request.form.get("review_venue")
+            review_first_name=request.form.get("first_name"),
+            review_last_name=request.form.get("last_name"),
+            review_date=request.form.get("wedding_date"),
+            review_email=request.form.get("email"),
+            review_venue=request.form.get("venue"),
+            review_content=request.form.get("review_content")
         )
         db.session.add(review)
         db.session.commit()
