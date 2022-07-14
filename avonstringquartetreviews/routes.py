@@ -45,6 +45,13 @@ def edit_review(review_id):
     return render_template("edit_review.html", review=review)
 
 
+@app.route("/delete_review/<int:review_id>")
+def delete_review(review_id):
+    review = Review.query.get_or_404(review_id)
+    db.session.delete(review)
+    db.session.commit()
+    return redirect(url_for("reviews"))
+
 @app.route("/login")
 def login(): 
     return render_template("login.html")
