@@ -26,7 +26,7 @@
           <li><a href="{{ url_for('home') }}">Home</a></li>
           <li><a href="{{ url_for('register') }}">Register</a></li>
           <li><a href="{{ url_for('login') }}">Log In</a></li>
-          <li><a href="{{ url_for('my_wedding') }}">My Wedding</a></li>
+          <li><a href="{{ url_for('my_wedding', username=session['user']) }}">My Wedding</a></li>
           <li><a href="{{ url_for('add_review') }}">Write a Review</a></li>
         </ul>
       </div>
@@ -36,7 +36,7 @@
       <li><a href="{{ url_for('home') }}">Home</a></li>
       <li><a href="{{ url_for('register') }}">Register</a></li>
       <li><a href="{{ url_for('login') }}">Log In</a></li>
-      <li><a href="{{ url_for('my_wedding') }}">My Wedding</a></li>
+      <li><a href="{{ url_for('my_wedding', username=session['user']) }}">My Wedding</a></li>
       <li><a href="{{ url_for('add_review') }}">Write a Review</a></li>
     </ul>
   </header>

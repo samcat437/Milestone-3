@@ -32,6 +32,8 @@ def register():
         # put the new user into 'session' cookie
         session["user"] = request.form.get("username").lower()
         flash("Registration successful")
+        redirect(url_for("my_wedding", username=session["user"]))
+
     return render_template("register.html")
 
 
@@ -48,6 +50,8 @@ def login():
                 existing_user["password"], request.form.get("password")):
                     session["user"] = request.form.get("username").lower()
                     flash("Hi, {}".format(request.form.get("username")))
+                    redirect(url_for(
+                        "my_wedding", username=session["user"]))
             else: 
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -60,6 +64,13 @@ def login():
 
     return render_template("login.html")
 
+
+@app.route("/my_wedding/<username>", methods=["GET", "POST"])
+def my_wedding(username): 
+    # grab session user's username from db
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    return render_template("my_wedding.html", username=username)
 
 @app.route("/reviews")
 def reviews():
@@ -101,8 +112,3 @@ def delete_review(review_id):
     db.session.delete(review)
     db.session.commit()
     return redirect(url_for("reviews"))
-
-
-@app.route("/my_wedding")
-def my_wedding(): 
-    return render_template("my_wedding.html")
