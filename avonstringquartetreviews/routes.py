@@ -1,7 +1,6 @@
 from flask import (
-    flash, render_template, request, redirect, session, url_for)
-# from bson.objectid import ObjectId
-# from werkzeug.security import generate_password_hash, check_password_hash
+    flash, render_template, 
+    request, redirect, session, url_for)
 from avonstringquartetreviews import app, db, mongo
 from avonstringquartetreviews.models import Review 
 
@@ -51,6 +50,7 @@ def delete_review(review_id):
     db.session.delete(review)
     db.session.commit()
     return redirect(url_for("reviews"))
+    
 
 @app.route("/login")
 def login(): 

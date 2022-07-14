@@ -1,11 +1,13 @@
-
 import os
 import re
 from flask import Flask
 from flask_pymongo import PyMongo
+from bson.objectid import ObjectId
+from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-import env
+if os.path.exists("env.py"):
+    import env
 
 
 app = Flask(__name__)
