@@ -11,6 +11,11 @@ from avonstringquartetreviews.models import Review
 def home():
     return render_template("reviews.html")
 
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    query = request.form.get("query")
+    reviews = list(mongo.db.tasks.find({"$text": {"$search": query}}))
+    return render_template("review.html", reviews=reviews)
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -67,10 +72,11 @@ def login():
 
 @app.route("/logout")
 def logout():
-    #remove user from session cookies
+    # remove user from session cookies
+    session.pop("user", None)
     flash("You are now logged out")
-    session.pop("user")
     return redirect(url_for("login"))
+    
 
 @app.route("/my_wedding/<username>", methods=["GET", "POST"])
 def my_wedding(username): 
