@@ -18,4 +18,3 @@ class Review(db.Model):
         return "#{0} - Review: {1} | Date: {2}".format(
             self.id, self.review_name, self.review_date
         )
-        
