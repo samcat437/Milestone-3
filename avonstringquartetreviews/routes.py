@@ -31,9 +31,18 @@ def add_review():
         )
         db.session.add(review)
         db.session.commit()
-        # not redirecting 
-        return redirect(url_for("home")) 
+        return redirect(url_for("reviews")) 
     return render_template("add_review.html")
+
+
+@app.route("/edit_review/<int:review_id>", methods=["GET", "POST"])
+def edit_review(review_id): 
+    review = Review.query.get_or_404(review_id)
+    if request.method == "POST": 
+        review.review_name = request.form.get("review_name")
+        db.session.commit()
+        return redirect(url_for("reviews"))
+    return render_template("edit_review.html", review=review)
 
 
 @app.route("/login")
