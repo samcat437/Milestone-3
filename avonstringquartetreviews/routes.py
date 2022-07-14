@@ -9,7 +9,12 @@ from avonstringquartetreviews.models import Review
 def home():
     return render_template("reviews.html")
 
-# not working
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    return render_template("register.html")
+
+
 @app.route("/reviews")
 def reviews():
     reviews = list(Review.query.order_by(Review.review_name).all())
@@ -35,7 +40,7 @@ def add_review():
 
 
 @app.route("/edit_review/<int:review_id>", methods=["GET", "POST"])
-def edit_review(review_id): 
+def edit_review(review_id):
     review = Review.query.get_or_404(review_id)
     if request.method == "POST": 
         review.review_name = request.form.get("review_name")
@@ -50,10 +55,10 @@ def delete_review(review_id):
     db.session.delete(review)
     db.session.commit()
     return redirect(url_for("reviews"))
-    
+
 
 @app.route("/login")
-def login(): 
+def login():
     return render_template("login.html")
 
 

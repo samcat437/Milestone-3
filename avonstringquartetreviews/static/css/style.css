@@ -1,38 +1,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap');
 
 body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-    font-family: Open-Sans, sans-serif;
-  }
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  font-family: Open-Sans, sans-serif;
+}
 
-  main {
-    flex: 1 0 auto;
-  }
+main {
+  flex: 1 0 auto;
+}
 
-  nav {
-    text-transform: uppercase;
-    letter-spacing: .2em;
-    background-color: white;
-  }
+nav {
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  background-color: white;
+}
 
-  nav .brand-logo, nav ul li a {
-    color: black;
-    padding-left: 1rem;
-  }
+nav .brand-logo,
+nav ul li a {
+  color: black;
+  padding-left: 1rem;
+}
 
+/* .text-shadow {
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+} */
 
-  .social-media li {
-    display: inline-block;
-    float: right;
-  }
+.social-media li {
+  display: inline-block;
+  float: right;
+}
 
-  /* not working */
-  footer .page-footer {
-    background-color: white;
-  }
+/* not working */
+footer .page-footer {
+  background-color: white;
+}
 
-  footer li i {
-    padding-right: 1rem;
-  }
+footer li i {
+  padding-right: 1rem;
+}
