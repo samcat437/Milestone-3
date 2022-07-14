@@ -32,7 +32,7 @@ def register():
         # put the new user into 'session' cookie
         session["user"] = request.form.get("username").lower()
         flash("Registration successful")
-        redirect(url_for("my_wedding", username=session["user"]))
+        return redirect(url_for("my_wedding", username=session["user"]))
 
     return render_template("register.html")
 
@@ -50,7 +50,7 @@ def login():
                 existing_user["password"], request.form.get("password")):
                     session["user"] = request.form.get("username").lower()
                     flash("Hi, {}".format(request.form.get("username")))
-                    redirect(url_for(
+                    return redirect(url_for(
                         "my_wedding", username=session["user"]))
             else: 
                 # invalid password match
