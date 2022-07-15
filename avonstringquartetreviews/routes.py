@@ -120,7 +120,7 @@ def add_details():
     print(request.method)
     if request.method == "POST":
         print("here we go")
-        detail = Details(
+        details = Details(
             username=session["user"],
             event_name=request.form.get("event_name"),
             event_first_name=request.form.get("first_name"),
@@ -132,8 +132,8 @@ def add_details():
             event_end=request.form.get("end_time"),
             event_content=request.form.get("event_content")
         )
-        print(detail)
-        db.session.add(detail)
+        print(details)
+        db.session.add(details)
         db.session.commit()
         return redirect(url_for("my_wedding"))
     return render_template("add_details.html")

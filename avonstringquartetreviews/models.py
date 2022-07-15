@@ -34,6 +34,7 @@ class Details(db.Model):
     event_end = db.Column(db.Time, unique=False)
     event_content = db.Column(db.Text, nullable=False)
 
+
     def __repr__(self): 
         # __repr__ to represent itself in the form of a string
         return f"#{0} - Event Name: {1} | Date: {2} | Start: {3} | End: {4}".format(
