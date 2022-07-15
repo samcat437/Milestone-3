@@ -130,13 +130,13 @@ def add_details():
             event_venue=request.form.get("venue"),
             event_start=request.form.get("start_time"),
             event_end=request.form.get("end_time"),
-            event_content=request.form.get("review_content")
+            event_content=request.form.get("event_content")
         )
         print(detail)
         db.session.add(detail)
         db.session.commit()
-        return redirect(url_for("my_wedding")) 
-    return render_template("add_details.html") 
+        return redirect(url_for("my_wedding"))
+    return render_template("add_details.html")
 
 
 @app.route("/edit_review/<int:review_id>", methods=["GET", "POST"])
