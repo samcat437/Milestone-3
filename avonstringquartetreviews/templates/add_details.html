@@ -7,9 +7,9 @@
     <form class="col s12" method="POST" action="{{ url_for('add_review') }}">
         <div class="row">
             <div class="input-field col s12">
-                <input id="review_name" name="review_name" type="text" minlenghth="3" maxlength="50" class="validate"
+                <input id="event_name" name="event_name" type="text" minlenghth="3" maxlength="50" class="validate"
                     required>
-                <label for="review_name">Name your Event</label>
+                <label for="event_name">Name your Event</label>
             </div>
         </div>
         <div class="row">
@@ -39,9 +39,8 @@
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <i class="fas fa-calendar-alt prefix light-blue-text text-darken-4"></i>
-                <input id="wedding_date" name="wedding_date" type="text" class="datepicker validate" required>
-                <label for="wedding_date">Wedding Date</label>
+                <input id="venue" name="venue" type="text" minlenghth="3" maxlength="25" class="validate" required>
+                <label for="venue">Venue</label>
             </div>
         </div>
         <div class="row">
@@ -54,7 +53,7 @@
         <div class="row">
             <div class="input-field col s12">
                 <i class=""></i>
-                <input id="end-time" name="end-time" type="text" class="datepicker validate" required>
+                <input id="end-time" name="end-time" type="text" class="timepicker validate" required>
                 <label for="end-time">End Time</label>
             </div>
         </div>
@@ -69,7 +68,7 @@
         </div>
         <div class="row">
             <div class="col s12 center-align">
-                <button class="btn waves-effect waves-light" type="submit" name="action">Submit Review
+                <button class="btn" type="submit" name="action">Submit
                     <i class="material-icons right"></i> 
                 </button>
             </div>

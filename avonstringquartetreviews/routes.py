@@ -9,7 +9,7 @@ from avonstringquartetreviews.models import Review
 
 @app.route("/")
 def home():
-    return render_template("reviews.html")
+    return render_template("login.html")
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
@@ -72,11 +72,11 @@ def login():
 
 @app.route("/logout")
 def logout():
-    # remove user from session cookies
+    # remove user from session cookies - not working
     session.pop("user", None)
     flash("You are now logged out")
     return redirect(url_for("login"))
-    
+
 
 @app.route("/my_wedding/<username>", methods=["GET", "POST"])
 def my_wedding(username): 
@@ -111,6 +111,26 @@ def add_review():
         db.session.commit()
         return redirect(url_for("reviews")) 
     return render_template("add_review.html")
+
+
+@app.route("/add_details", methods=["GET", "POST"])
+def add_details():
+    if request.method == "POST":
+        details = Details(
+            event_name=request.form.get("event_name"),
+            event_first_name=request.form.get("first_name"),
+            event_last_name=request.form.get("last_name"),
+            event_date=request.form.get("wedding_date"),
+            event_email=request.form.get("email"),
+            event_venue=request.form.get("venue"),
+            event_start=request.form.get("start_time"),
+            event_end=request.form.get("end_time"),
+            event_content=request.form.get("review_content")
+        )
+        db.session.add(details)
+        db.session.commit()
+        return redirect(url_for("my_wedding")) 
+    return render_template("add_details.html") 
 
 
 @app.route("/edit_review/<int:review_id>", methods=["GET", "POST"])
