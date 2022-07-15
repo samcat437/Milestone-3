@@ -4,7 +4,7 @@ from flask import (
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 from avonstringquartetreviews import app, db, mongo
-from avonstringquartetreviews.models import Review
+from avonstringquartetreviews.models import Review, Details
 
 
 @app.route("/")
@@ -57,7 +57,7 @@ def login():
                     flash("Hi, {}".format(request.form.get("username")))
                     return redirect(url_for(
                         "my_wedding", username=session["user"]))
-            else: 
+            else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
                 return redirect(url_for("login"))
@@ -89,6 +89,7 @@ def my_wedding(username):
     
     return redirect(url_for("login"))
 
+
 @app.route("/reviews")
 def reviews():
     reviews = list(Review.query.order_by(Review.review_name).all())
@@ -115,8 +116,12 @@ def add_review():
 
 @app.route("/add_details", methods=["GET", "POST"])
 def add_details():
+    print("Hello")
+    print(request.method)
     if request.method == "POST":
-        details = Details(
+        print("here we go")
+        detail = Details(
+            username=session["user"],
             event_name=request.form.get("event_name"),
             event_first_name=request.form.get("first_name"),
             event_last_name=request.form.get("last_name"),
@@ -127,7 +132,8 @@ def add_details():
             event_end=request.form.get("end_time"),
             event_content=request.form.get("review_content")
         )
-        db.session.add(details)
+        print(detail)
+        db.session.add(detail)
         db.session.commit()
         return redirect(url_for("my_wedding")) 
     return render_template("add_details.html") 

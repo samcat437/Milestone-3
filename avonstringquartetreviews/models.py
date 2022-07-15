@@ -19,9 +19,11 @@ class Review(db.Model):
             self.id, self.review_name, self.review_date
         )
 
+
 class Details(db.Model):
     # schema for the Details model
     id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(25), unique=True, nullable=False)
     event_name = db.Column(db.String(25), unique=True, nullable=False)
     event_first_name = db.Column(db.String(25), unique=True, nullable=False)
     event_last_name = db.Column(db.String(25), unique=True, nullable=False)
@@ -35,5 +37,6 @@ class Details(db.Model):
     def __repr__(self): 
         # __repr__ to represent itself in the form of a string
         return "#{0} - Event Name: {1} | Date: {2} | Start: {3} | End: {4}".format(
-            self.id, self.review_name, self.review_date, self.event_start, self.event_end
+            self.id, self.review_name, self.review_date,
+            self.event_start, self.event_end
         )
