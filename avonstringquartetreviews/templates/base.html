@@ -19,37 +19,37 @@
 <body>
   <header>
     <!-- top navbar -->
+    {% if isLogIn %}
+    <nav class="nav-extended hidden"></nav>
+    {% else %}
     <nav class="nav-extended">
       <div class="nav-wrapper">
-        <a href="{{ url_for('home') }}" class="brand-logo">Avon String Quartet Reviews</a>
+        <a href="{{ url_for('my_wedding', username=session['user']) }}" class="brand-logo">Avon String Quartet
+          Planning</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
         <ul class="right hide-on-med-and-down">
-          <li><a href="{{ url_for('home') }}">Home</a></li>
           <li><a href="{{ url_for('reviews') }}">Reviews</a></li>
           {% if session.user %}
-            <li><a href="{{ url_for('my_wedding', username=session['user']) }}">My Wedding</a></li>
-            <li><a href="{{ url_for('add_review') }}">Write a Review</a></li>
-            <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+          <li><a href="{{ url_for('my_wedding', username=session['user']) }}">My Wedding</a></li>
+          <li><a href="{{ url_for('add_review') }}">Write a Review</a></li>
+          <li><a href="{{ url_for('logout') }}">Log Out</a></li>
           {% else %}
-            <li><a href="{{ url_for('register') }}">Register</a></li>
-            <li><a href="{{ url_for('login') }}">Log In</a></li>
+          <li><a href="{{ url_for('login') }}">Log In</a></li>
           {% endif %}>
         </ul>
       </div>
     </nav>
     <!-- mobile navbar -->
     <ul class="sidenav" id="mobile-demo">
-      <li><a href="{{ url_for('home') }}">Reviews</a></li>
-      <li><a href="{{ url_for('reviews') }}">Home</a></li>
       {% if session.user %}
-        <li><a href="{{ url_for('my_wedding', username=session['user']) }}">My Wedding</a></li>
-        <li><a href="{{ url_for('add_review') }}">Write a Review</a></li>
-        <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+      <li><a href="{{ url_for('my_wedding', username=session['user']) }}">My Wedding</a></li>
+      <li><a href="{{ url_for('add_review') }}">Write a Review</a></li>
+      <li><a href="{{ url_for('logout') }}">Log Out</a></li>
       {% else %}
-        <li><a href="{{ url_for('register') }}">Register</a></li>
-        <li><a href="{{ url_for('login') }}">Log In</a></li>
+      <li><a href="{{ url_for('login') }}">Log In</a></li>
       {% endif %}
     </ul>
+    {% endif %}
   </header>
 
   <section>
@@ -70,67 +70,68 @@
     {% endblock %}
   </main>
 
-  <footer class="page-footer">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <div class="row">
-            <div class="col l6 s12">
-              <h5 class="white-text">Contact Us</h5>
-              <ul class="list-unstyled">
-                <li><i class="fas fa-phone"></i>Phone: +447792091467</li>
-                <li><i class="fas fa-envelope-open-text"></i>Email:
-                  avonstringquartet@gmail.com</li>
-                <li><i class="fab fa-facebook-messenger"></i>Facebook Messenger</li>
-                <li><i class="fab fa-instagram"></i>Instagram Messenger</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col l4 offset-l2 s12">
-          <ul class="list-unstyled">
-            <li>
-              <a href="#" class="nav-link text-muted">Privacy Policy</a>
-            </li>
-            <li>
-              <a href="#" class="nav-link text-muted">Copyright Information</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-copyright">
+  {% if isLogIn %}
+  <footer class="hidden">
+  </footer>
+    {% else %}
+    <footer class="page-footer">
       <div class="container">
         <div class="row">
-          <div class="col s6">
-            © The Avon String Quartet, 2022.
+          <div class="col l6 s12">
+            <h5 class="white-text">Contact Us</h5>
+            <ul class="list-unstyled">
+              <li><i class="fas fa-phone"></i>Phone: +447792091467</li>
+              <li><i class="fas fa-envelope-open-text"></i>Email:
+                avonstringquartet@gmail.com</li>
+              <li><i class="fab fa-facebook-messenger"></i>Facebook Messenger</li>
+              <li><i class="fab fa-instagram"></i>Instagram Messenger</li>
+            </ul>
           </div>
+          <div class="col l4 offset-l2 s12">
+            <ul class="list-unstyled">
+              <li>
+                <a href="#" class="nav-link text-muted">Privacy Policy</a>
+              </li>
+              <li>
+                <a href="#" class="nav-link text-muted">Copyright Information</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
           <div class="row">
-            <div class="col s6 offset-6">
-              <ul class="social-media">
-                <li>
-                  <a href="https://www.facebook.com/"><i class="fab fa-facebook fa-2x"></i></a>
-                </li>
-                <li>
-                  <a href="https://www.instagram.com/"><i class="fab fa-instagram fa-2x"></i></a>
-                </li>
-                <li>
-                  <a href="https://www.youtube.com/"><i class="fab fa-youtube fa-2x"></i></a>
-                </li>
-              </ul>
+            <div class="col s6">
+              © The Avon String Quartet, 2022.
+            </div>
+            <div class="row">
+              <div class="col s6 offset-6">
+                <ul class="social-media">
+                  <li>
+                    <a href="https://www.facebook.com/"><i class="fab fa-facebook fa-2x"></i></a>
+                  </li>
+                  <li>
+                    <a href="https://www.instagram.com/"><i class="fab fa-instagram fa-2x"></i></a>
+                  </li>
+                  <li>
+                    <a href="https://www.youtube.com/"><i class="fab fa-youtube fa-2x"></i></a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </footer>
+    </footer>
+    {% endif %}
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-  {% block scripts %}
-  {% endblock %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    {% block scripts %}
+    {% endblock %}
 </body>
 
 </html>

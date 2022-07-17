@@ -36,10 +36,20 @@ nav ul li a {
 }
 
 /* not working */
-footer .page-footer {
-  background-color: white;
+.page-footer {
+  background-color: blue;
 }
 
 footer li i {
   padding-right: 1rem;
+}
+
+/* login page */
+
+form label {
+  padding-top: 1rem;
+}
+
+.hidden {
+  display: none;
 }
