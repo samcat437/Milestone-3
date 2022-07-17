@@ -48,16 +48,19 @@ def login():
         # checks if username exists in db
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
+        # checks if user has entered in Details db
+        details_added = list(Details.query.order_by(Details.event_name).all())
         
         if existing_user: 
             # ensure hashed password matches import
             if check_password_hash(
                 existing_user["password"], request.form.get("password")):
                     session["user"] = request.form.get("username").lower()
-                    # pseudo code below
-                    if session["user"] and session["user"].details: 
+
+                    # if has user credentials and has entered in Details db
+                    if session["user"] and details_added: 
                         return redirect(url_for(
-                        "my_wedding_details")
+                        "my_wedding_details", username=existing_user))
                     else: 
                         flash("Hi, {}.".format(request.form.get("username")))
                         return redirect(url_for(
@@ -92,6 +95,10 @@ def my_wedding_details():
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
     wedding_details = list(Details.query.order_by(Details.event_name).all())
+    print("HI")
+    if Details.event_name not in wedding_details:
+        print("Hello")
+        return render_template("my_wedding.html", username=username)
     return render_template(
         "my_wedding_details.html", wedding_details=wedding_details, username=username)
 
@@ -175,6 +182,7 @@ def delete_review(review_id):
 @app.route("/delete_details/<int:details_id>")
 def delete_details(details_id):
     wedding_details = Details.query.get_or_404(details_id)
+    flash(f"Are you sure you want to cancel your event?")
     db.session.delete(wedding_details)
     db.session.commit()
     return redirect(url_for("my_wedding_details"))
@@ -182,7 +190,7 @@ def delete_details(details_id):
 
 @app.route("/logout")
 def logout():
-    # remove user from session cookies - not working
+    print("Hello")
     session.pop("user", None)
     flash("You are now logged out")
     return redirect(url_for("login"))

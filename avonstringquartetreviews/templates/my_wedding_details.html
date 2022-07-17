@@ -23,7 +23,9 @@
         </div>
         <div class="card-action">
           <a href="{{ url_for('edit_details', details_id=wedding_detail.id) }}" class="btn green accent-4">Edit</a>
-          <a href="{{ url_for('delete_details', details_id=wedding_detail.id) }}" class="btn red">Delete</a>
+        <div>
+        <div class="card-action">
+          <a href="{{ url_for('delete_details', details_id=wedding_detail.id) }}" class="btn red">Cancel the Event</a>  
         </div>
       </div>
     </div>

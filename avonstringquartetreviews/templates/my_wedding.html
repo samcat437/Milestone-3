@@ -18,25 +18,5 @@
     </div>
 </div>
 
-<div class="row">
-    {% for wedding_detail in wedding_details %}
-    <div class="col s12">
-      <div class="card blue-grey darken-1 center-align">
-        <div class="card-content white-text">
-          <span class="card-title">{{ wedding_detail.event_name }}</span>
-          <p>{{ wedding_detail.event_date }}</p>
-          <p>{{ wedding_detail.event_venue }}</p>
-          <p>{{ wedding_detail.event_start }}</p>
-          <p>{{ wedding_detail.event_end }}</p>
-          <p>{{ wedding_detail.event_content }}</p>
-        </div>
-        <div class="card-action">
-          <a href="" class="btn green accent-4">Edit</a>
-        </div>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-
 
 {% endblock %}
