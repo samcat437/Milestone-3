@@ -54,8 +54,13 @@ def login():
             if check_password_hash(
                 existing_user["password"], request.form.get("password")):
                     session["user"] = request.form.get("username").lower()
-                    flash("Hi, {}. Welcome to your wedding profile. If you're new here, please click on Add Event Details. Returning users can view and edit your information below".format(request.form.get("username")))
-                    return redirect(url_for(
+                    # pseudo code below
+                    if session["user"] and session["user"].details: 
+                        return redirect(url_for(
+                        "my_wedding_details")
+                    else: 
+                        flash("Hi, {}.".format(request.form.get("username")))
+                        return redirect(url_for(
                         "my_wedding", username=session["user"]))
             else:
                 # invalid password match
