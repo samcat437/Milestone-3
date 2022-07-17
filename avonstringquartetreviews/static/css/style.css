@@ -7,6 +7,10 @@ body {
   font-family: Open-Sans, sans-serif;
 }
 
+p {
+  font-size: 1.25rem;
+}
+
 main {
   flex: 1 0 auto;
 }

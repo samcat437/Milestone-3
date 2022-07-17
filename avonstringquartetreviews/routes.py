@@ -54,7 +54,7 @@ def login():
             if check_password_hash(
                 existing_user["password"], request.form.get("password")):
                     session["user"] = request.form.get("username").lower()
-                    flash(f"Hi, {username}. Welcome to your wedding profile. If you're new, please click on Add Event Details. Returning users can view and edit your information below".format(request.form.get("username")))
+                    flash("Hi, {}. Welcome to your wedding profile. If you're new here, please click on Add Event Details. Returning users can view and edit your information below".format(request.form.get("username")))
                     return redirect(url_for(
                         "my_wedding", username=session["user"]))
             else:
@@ -70,14 +70,6 @@ def login():
     return render_template("login.html", isLogIn = True)
 
 
-@app.route("/logout")
-def logout():
-    # remove user from session cookies - not working
-    session.pop("user", None)
-    flash("You are now logged out")
-    return redirect(url_for("login"))
-
-
 @app.route("/my_wedding/<username>", methods=["GET", "POST"])
 def my_wedding(username): 
     # grab session user's username from db
@@ -88,6 +80,15 @@ def my_wedding(username):
         return render_template("my_wedding.html", username=username)
     
     return redirect(url_for("login"))
+
+
+@app.route("/my_wedding_details")
+def my_wedding_details():
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    wedding_details = list(Details.query.order_by(Details.event_name).all())
+    return render_template(
+        "my_wedding_details.html", wedding_details=wedding_details, username=username)
 
 
 @app.route("/reviews")
@@ -116,10 +117,7 @@ def add_review():
 
 @app.route("/add_details", methods=["GET", "POST"])
 def add_details():
-    print("Hello")
-    print(request.method)
     if request.method == "POST":
-        print("here we go")
         details = Details(
             username=session["user"],
             event_name=request.form.get("event_name"),
@@ -132,10 +130,9 @@ def add_details():
             event_end=request.form.get("end_time"),
             event_content=request.form.get("event_content")
         )
-        print(details)
         db.session.add(details)
         db.session.commit()
-        return redirect(url_for("my_wedding"))
+        return redirect(url_for("my_wedding_details"))
     return render_template("add_details.html")
 
 
@@ -149,9 +146,38 @@ def edit_review(review_id):
     return render_template("edit_review.html", review=review)
 
 
+@app.route("/edit_details/<int:details_id>", methods=["GET", "POST"])
+def edit_details(details_id):
+    wedding_details = Details.query.get_or_404(details_id)
+    print("Hello")
+    if request.method == "POST": 
+        wedding_details.event_name = request.form.get("event_name")
+        db.session.commit()
+        return redirect(url_for("my_wedding_details"))
+    print("Hello")
+    return render_template(
+        "edit_details.html", wedding_details=wedding_details)
+
+
 @app.route("/delete_review/<int:review_id>")
 def delete_review(review_id):
     review = Review.query.get_or_404(review_id)
     db.session.delete(review)
     db.session.commit()
     return redirect(url_for("reviews"))
+
+
+@app.route("/delete_details/<int:details_id>")
+def delete_details(details_id):
+    wedding_details = Details.query.get_or_404(details_id)
+    db.session.delete(wedding_details)
+    db.session.commit()
+    return redirect(url_for("my_wedding_details"))
+
+
+@app.route("/logout")
+def logout():
+    # remove user from session cookies - not working
+    session.pop("user", None)
+    flash("You are now logged out")
+    return redirect(url_for("login"))
