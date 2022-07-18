@@ -9,7 +9,7 @@ from avonstringquartetreviews.models import Review, Details
 
 @app.route("/")
 def home():
-    return render_template("my_wedding.html")
+    return render_template("login.html")
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
