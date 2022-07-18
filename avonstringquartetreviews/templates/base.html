@@ -55,29 +55,21 @@
     {% endif %}
   </header>
 
-  <section>
-    <!-- flash messages -->
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    {% for message in messages %}
+  <!-- <section> -->
+  <!-- flash messages -->
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  {% for message in messages %}
 
-    <!-- Modal Trigger -->
-    <!-- <button data-target="modal1" class="btn modal-trigger">Modal</button> -->
-
-    <!-- Modal Structure -->
-    <div id="modal1" class="modal">
-      <div class="row flashes modal-content">
-        <h4 class="center-align">{{ message }}</h4>
-        <button class="btn green accent-4">YES</button>
-        <button class="btn red">NO</button>
-      </div>
-      <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">OK</a>
-      </div>
+  <!-- Modal Structure -->
+  <div id="modal2" class="modal">
+    <div class="row flashes modal-content">
+      <h4 class="center-align">{{ message }}</h4>
     </div>
-    {% endfor %}
-    {% endif%}
-    {% endwith %}
+  </div>
+  {% endfor %}
+  {% endif%}
+  {% endwith %}
   </section>
 
   <main class="container">
@@ -120,20 +112,18 @@
           <div class="col s6">
             © The Avon String Quartet, 2022.
           </div>
-          <div class="row">
-            <div class="col s6 offset-6">
-              <ul class="social-media">
-                <li>
-                  <a href="https://www.facebook.com/"><i class="fab fa-facebook fa-2x"></i></a>
-                </li>
-                <li>
-                  <a href="https://www.instagram.com/"><i class="fab fa-instagram fa-2x"></i></a>
-                </li>
-                <li>
-                  <a href="https://www.youtube.com/"><i class="fab fa-youtube fa-2x"></i></a>
-                </li>
-              </ul>
-            </div>
+          <div class="col l4 offset-l2 s6">
+            <ul class="social-media">
+              <li>
+                <a href="https://www.facebook.com/"><i class="fab fa-facebook fa-2x"></i></a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/"><i class="fab fa-instagram fa-2x"></i></a>
+              </li>
+              <li>
+                <a href="https://www.youtube.com/"><i class="fab fa-youtube fa-2x"></i></a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

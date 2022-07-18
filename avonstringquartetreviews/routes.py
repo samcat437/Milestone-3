@@ -95,9 +95,9 @@ def my_wedding_details():
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
     wedding_details = list(Details.query.order_by(Details.event_name).all())
-    print("HI")
-    if Details.event_name not in wedding_details:
-        return render_template("my_wedding.html", username=username)
+    # error ask Rohit
+    # if Details.event_name not in wedding_details:
+    #     return render_template("my_wedding.html", username=username)
     return render_template(
         "my_wedding_details.html", wedding_details=wedding_details, username=username)
 
@@ -160,14 +160,20 @@ def edit_review(review_id):
 @app.route("/edit_details/<int:details_id>", methods=["GET", "POST"])
 def edit_details(details_id):
     wedding_details = Details.query.get_or_404(details_id)
-    print("Hello")
     if request.method == "POST": 
         wedding_details.event_name = request.form.get("event_name")
         db.session.commit()
         return redirect(url_for("my_wedding_details"))
-    print("Hello")
     return render_template(
         "edit_details.html", wedding_details=wedding_details)
+
+
+@app.route("/delete_review_confirmation")
+def delete_review_confirmation(admin):
+    # pseudo code for checking if you are the author of the review 
+    if admin != session["_id"]:
+        flash("You can only delete your own reviews.")
+    return redirect(url_for("reviews", review=review))
 
 
 @app.route("/delete_review/<int:review_id>")
@@ -178,10 +184,14 @@ def delete_review(review_id):
     return redirect(url_for("reviews"))
 
 
+@app.route("/delete_details_confirmation")
+def delete_details_confirmation():
+    return redirect(url_for("my_wedding_details", wedding_details=wedding_details))
+
+
 @app.route("/delete_details/<int:details_id>")
 def delete_details(details_id):
     wedding_details = Details.query.get_or_404(details_id)
-    flash(f"Are you sure you want to cancel your event?")
     db.session.delete(wedding_details)
     db.session.commit()
     return redirect(url_for("my_wedding_details"))
