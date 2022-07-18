@@ -98,8 +98,10 @@ def my_wedding_details():
         {"username": session["user"]})["username"]
     wedding_details = list(Details.query.order_by(Details.event_name).all())
     # error ask Rohit
-    # if Details.event_name not in wedding_details:
+    # if Details.event_venue not in wedding_details:
     #     return render_template("my_wedding.html", username=username)
+
+    # pseudo code for only one detail
     return render_template(
         "my_wedding_details.html", wedding_details=wedding_details, username=username)
 

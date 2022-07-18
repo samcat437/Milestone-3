@@ -5,6 +5,26 @@ body {
   min-height: 100vh;
   flex-direction: column;
   font-family: Open-Sans, sans-serif;
+  background-image: url("/static/images/watercolor-green.jpg");
+  color: #112A46;
+}
+
+@media only screen and (max-width: 768px) {
+  nav .brand-logo {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  nav .brand-logo {
+    font-size: 1rem;
+  }
+}
+
+.small-bridge {
+  height: 60px;
+  width: 100px;
+  padding-top: 5px;
 }
 
 p {
@@ -23,7 +43,7 @@ nav {
 
 nav .brand-logo,
 nav ul li a {
-  color: black;
+  color: #112A46;
   padding-left: 1rem;
 }
 
@@ -36,16 +56,21 @@ nav ul li a {
 
 .social-media li {
   display: inline-block;
-  float: right;
 }
 
 /* not working */
 .page-footer {
-  background-color: blue;
+  background-color: #FEE1F1;
+  color: #112A46;
 }
 
 footer li i {
   padding-right: 1rem;
+  color:#112A46;
+}
+
+.page-footer .footer-copyright {
+  color: #112A46;
 }
 
 /* login page */
@@ -56,4 +81,8 @@ form label {
 
 .hidden {
   display: none;
+}
+
+.login {
+  padding-top: 10%;
 }

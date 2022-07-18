@@ -20,10 +20,10 @@ document.addEventListener('DOMContentLoaded', function() {
     let modals = document.querySelectorAll('.modal');
     var instances = M.Modal.init(modals);
     console.log(instances)
-    for (modal of instances) {
-    console.log("Hello")
-    modal.open();
-    }    
+    // for (modal of instances) {
+    // console.log("Hello")
+    // modal.open();
+    // }    
 
     // not working 
     // let helperplaceholder = document.getElementsByClassName("helper-placeholder");
