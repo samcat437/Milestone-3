@@ -11,11 +11,13 @@ from avonstringquartetreviews.models import Review, Details
 def home():
     return render_template("login.html")
 
+
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
     reviews = list(mongo.db.tasks.find({"$text": {"$search": query}}))
     return render_template("review.html", reviews=reviews)
+    
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
