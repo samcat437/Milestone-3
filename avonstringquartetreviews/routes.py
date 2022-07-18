@@ -9,7 +9,7 @@ from avonstringquartetreviews.models import Review, Details
 
 @app.route("/")
 def home():
-    return render_template("my_wedding.html")
+    return render_template("login.html")
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
@@ -118,7 +118,7 @@ def add_review():
             review_date=request.form.get("wedding_date"),
             review_email=request.form.get("email"),
             review_venue=request.form.get("venue"),
-            review_content=request.form.get("review_content")
+            review_content=request.form.get("review_content"),
         )
         db.session.add(review)
         db.session.commit()
@@ -128,7 +128,7 @@ def add_review():
 
 @app.route("/add_details", methods=["GET", "POST"])
 def add_details():
-    if request.method == "POST":
+    if request.method == "POST": 
         details = Details(
             username=session["user"],
             event_name=request.form.get("event_name"),
@@ -186,6 +186,12 @@ def delete_review(review_id):
 
 @app.route("/delete_details_confirmation")
 def delete_details_confirmation():
+    author = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    admin = Details.query.get_or_404(username)
+    # not working
+    if author != admin:
+        flash("You can can only edit your own review.")
     return redirect(url_for("my_wedding_details", wedding_details=wedding_details))
 
 
