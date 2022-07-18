@@ -9,7 +9,7 @@ from avonstringquartetreviews.models import Review, Details
 
 @app.route("/")
 def home():
-    return render_template("login.html")
+    return render_template("my_wedding.html")
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
@@ -97,7 +97,6 @@ def my_wedding_details():
     wedding_details = list(Details.query.order_by(Details.event_name).all())
     print("HI")
     if Details.event_name not in wedding_details:
-        print("Hello")
         return render_template("my_wedding.html", username=username)
     return render_template(
         "my_wedding_details.html", wedding_details=wedding_details, username=username)

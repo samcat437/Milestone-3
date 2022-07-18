@@ -5,14 +5,19 @@ document.addEventListener('DOMContentLoaded', function() {
     M.Timepicker.init(timepicker);
     let datepicker = document.querySelectorAll('.datepicker');
     M.Datepicker.init(datepicker);
-    let modal = document.querySelectorAll('.modal');
-    M.Modal.init(modal);
+   
+    let modals = document.querySelectorAll('.modal');
+    let instances = M.Modal.init(modals);
+
+    for (modal of instances) {
+    modal.open();
+    }    
 
     // not working 
-    let helperplaceholder = document.getElementsByClassName("helper-placeholder");
-    helperplaceholder.addEventListener("click", () => {
-      helperplaceholder.classList.add("hidden");
-    })
+    // let helperplaceholder = document.getElementsByClassName("helper-placeholder");
+    // helperplaceholder.addEventListener("click", () => {
+    //   helperplaceholder.classList.add("hidden");
+    // })
   });
 
 
