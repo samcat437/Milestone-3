@@ -37,8 +37,7 @@ class Details(db.Model):
 
     def __repr__(self): 
         # __repr__ to represent itself in the form of a string
-        return f"#{0} - Event Name: {1} | Date: {2} | Start: {3} | End: {4}"
-        .format(
+        return f"#{0} - Event Name: {1} | Date: {2} | Start: {3} | End: {4}".format(
             self.id, self.event_name, self.event_date,
             self.event_start, self.event_end
         )
