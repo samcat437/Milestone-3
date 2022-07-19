@@ -128,8 +128,7 @@ def add_review():
 
 @app.route("/add_details", methods=["GET", "POST"])
 def add_details():
-    if request.method == "POST": 
-        # if there is 
+    if request.method == "POST":
         details = Details(
             username=session["user"],
             event_name=request.form.get("event_name"),
@@ -161,7 +160,7 @@ def edit_review(review_id):
 @app.route("/edit_details/<int:details_id>", methods=["GET", "POST"])
 def edit_details(details_id):
     wedding_details = Details.query.get_or_404(details_id)
-    if request.method == "POST": 
+    if request.method == "POST":
         wedding_details.event_name = request.form.get("event_name")
         wedding_details.event_name = request.form.get("wedding_date")
         wedding_details.event_name = request.form.get("venue")
@@ -176,10 +175,7 @@ def edit_details(details_id):
 
 
 @app.route("/delete_review_confirmation")
-def delete_review_confirmation(admin):
-    # pseudo code for checking if you are the author of the review 
-    if admin != session["_id"]:
-        flash("You can only delete your own reviews.")
+def delete_review_confirmation():
     return redirect(url_for("reviews", review=review))
 
 
