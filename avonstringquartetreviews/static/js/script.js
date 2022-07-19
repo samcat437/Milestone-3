@@ -9,7 +9,4 @@ document.addEventListener('DOMContentLoaded', function() {
     let modals = document.querySelectorAll('.modal');
     var instances = M.Modal.init(modals);
     console.log(instances);
-  });
-
-
-        
+  });      
