@@ -17,7 +17,7 @@ def search():
     query = request.form.get("query")
     reviews = list(mongo.db.tasks.find({"$text": {"$search": query}}))
     return render_template("review.html", reviews=reviews)
-    
+
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -96,11 +96,10 @@ def my_wedding(username):
 def my_wedding_details():
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    wedding_details = list(Details.query.order_by(Details.event_name).all())
+    wedding_details = list(Details.query.order_by(Details.event_name).filter_by(username=session["user"]))
 
-    # pseudo code for only one detail
     return render_template(
-        "my_wedding_details.html", wedding_details=wedding_details, username=username)
+        "my_wedding_details.html", wedding_details=wedding_details, username=session["user"])
 
 
 @app.route("/reviews")
@@ -130,6 +129,7 @@ def add_review():
 @app.route("/add_details", methods=["GET", "POST"])
 def add_details():
     if request.method == "POST": 
+        # if there is 
         details = Details(
             username=session["user"],
             event_name=request.form.get("event_name"),
@@ -163,8 +163,14 @@ def edit_details(details_id):
     wedding_details = Details.query.get_or_404(details_id)
     if request.method == "POST": 
         wedding_details.event_name = request.form.get("event_name")
+        wedding_details.event_name = request.form.get("wedding_date")
+        wedding_details.event_name = request.form.get("venue")
+        wedding_details.event_name = request.form.get("start_time")
+        wedding_details.event_name = request.form.get("end_time")
+        wedding_details.event_name = request.form.get("event_content")
+        db.session.add(wedding_details)
         db.session.commit()
-        return render_template("my_wedding.html", username=username)
+        return redirect(url_for("my_wedding_details", wedding_details=wedding_details))
     return render_template(
         "edit_details.html", wedding_details=wedding_details)
 
