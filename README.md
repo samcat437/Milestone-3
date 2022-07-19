@@ -65,21 +65,15 @@ Contrast colours of pale blue, pale pink and pale green dominant the scheme. The
 
 ## Typography 
 
-For paragraph text, Nanum Gothic sourced from Google Fonts is used to create a modern and fun look as the site is designed for educational purposes. Sans-serif is the fallback option.
-
-For headings and the nav bar, Gochi Hand from Google Fonts to emphasise the whimsical nature of the site. 
+Open Sans was sourced from Google Fonts to create a clean, readable look. 
 
 ### Images 
 
-Images were used from the free site : [pixabay](https://pixabay.com) and then cropped for use across the site. The examples in the quiz and in the nav bar were cropped from this [image](https://pixabay.com/vectors/key-signatures-keys-music-notation-6792283/).
-
-The nav bar was taken from this [one](https://pixabay.com/vectors/music-treble-clef-musical-symbol-39881/).
-
-The backgrounds were taken from these links : [index.html background](https://pixabay.com/vectors/cloud-speech-bubble-thinking-idea-146176/) and [game.html background](https://pixabay.com/vectors/clouds-pattern-wallpaper-sky-5930599/).
+The nav bar logo was taken from this [url](https://pixabay.com/vectors/bridge-nature-tree-lake-handdrawn-2497136/). Pixabay has many free images to choose from.
 
 ## Wireframes 
 
-Wireframes can be viewed [here](https://github.com/samcat437/Milestone-2/blob/main/docs/Wireframes/keysignatures.pdf).
+Wireframes can be viewed [here]().
 
 ### Technologies
 
@@ -102,8 +96,6 @@ Wireframes can be viewed [here](https://github.com/samcat437/Milestone-2/blob/ma
 [Jinja](https://flask.palletsprojects.com/en/2.1.x/) : Jinja is used to create templates to populate HTML pages on the site.
 
 [Google Fonts](https://fonts.google.com/) : Google Fonts provided the font "Nanum Gothic" and "Gochi Hand" in order to customise and stylise the text. 
-
-[Colorzilla](https://www.colorzilla.com/gradient-editor/) : Colorzilla has an ultimate CSS gradient generator that I used to generate the CSS for the background colours of my lesson.html page. 
 
 [Coolors](https://coolors.co/) : Coolors is a colour palette generator I used to create colours that worked together for the site.
 
@@ -129,23 +121,15 @@ The W3C Markup Validator, W3C CSS Validator and Jshint Services were used to che
 
 [W3C Markup Validator](https://validator.w3.org/)
 
-* [index.html](https://github.com/samcat437/Milestone-2/blob/main/docs/Code-Validation/index.html%20W3C%20markup%20-%20AAKS.png) - The validator flagged that my image tag on line 25 was missing an alt tag. 
-* [lesson.html](https://github.com/samcat437/Milestone-2/blob/main/docs/Code-Validation/lesson.html%20W3C%20markup%20-%20ABKS.png) - The validator flagged that my images within the lesson content were missing alt tags.
-* [game.html](https://github.com/samcat437/Milestone-2/blob/main/docs/Code-Validation/game.html%20W3C%20validator%20-%20AAKS.png) - The validator notified me that I had an empty h1 element on line 62. This is a container for the quiz question. To fix this, I added some placeholder text and then added the hidden class from my CSS and then added some additional Javascript to remove this class when the game is started. The validator also notified me that lines 72 and 78 where I have section tags, I need to have heading elements to correspond. I changed these to div elements to rectify. I also forgot to close my section element on line 59. 
+* []() - The validator flagged 
+* []() - The validator flagged 
+* []() - To fix this, I added some placeholder text and then added the hidden class from my CSS and then added some additional Javascript to remove this class when the game is started. The validator also notified me that lines 72 and 78 where I have section tags, I need to have heading elements to correspond. I changed these to div elements to rectify. I also forgot to close my section element on line 59. 
 
 [W3C CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) 
 
-[style.css](https://github.com/samcat437/Milestone-2/blob/main/docs/Code-Validation/CSS%20validator%20-%20AAKS.png) - Hooray - no errors found. 
+[]()
 
-[Jshint](https://jshint.com/) - There were a few unnecessary semicolons that I removed as per the validator's instruction; however, there were a number of notifications that my code was for Javascript ES6, which is the version that I intended to write my code in, so I don't see a reason to take action from these [notifications](https://github.com/samcat437/Milestone-2/blob/main/docs/Code-Validation/Jshint%20-%20AAKS.png). 
-
-## Automated Tests
-
-Automated Tests can be found in game1.test.js within the static, js and test folders. I opted to test three important functions of the game, rather than all of them, as per the project requirements. I wrote the code first and the test cases after, as was recommended to me by my mentor, who believes that this is the right way to learn at my stage of development. Within a professional environment, a test driven development (TDD) approach would be preferable or required. 
-
-I tested that DOM elements were appearing and disappearing as appropriate for my first three functions - startGame, readyQuestion, and newQuestion. I tested this with Jest and by using their [documentation](https://jestjs.io/docs/getting-started). View my test coverage [here](https://github.com/samcat437/Milestone-2/blob/main/docs/Code-Validation/jest-coverage.png).
-
-I struggled with my global let variable "n" while writing test cases. "n" is the variable representing the index for the questions array which changes the questions as they populate the page and the user clicks the next question button. I wrote the test case on line 122 of game1.test.js which tests that once the last question is reached, the next button will disappear and the submit button will appear. The test was not passing with "n" being incremented on line 152 of game1.js. I moved it to the selectAnswer function, but then this caused another test to fail. Moving "n++" to the end of the newQuestion block as well as rewriting the code so that when the second to last question was reached does the code execute solved these issues. Later on I rewrote this again to account for the last question being reached, not the second to last. The test continues to pass and I believe it is fine to include as a test case as it shows the development process.
+[Jshint](https://jshint.com/) - 
 
 ## Manual Testing 
 
@@ -187,11 +171,8 @@ Manual tests were conducted throughout the development process in order to under
 
 ### Via Heroku 
 
-1. Navigate to the Github repository at [here](https://github.com/samcat437/Milestone-2).
-2. Choose "Settings."
-3. Click on "Pages."
-4. Ensure the main branch and the root directory are selected.
-5. Copy and paste the url into the browser or click on the live [link](https://samcat437.github.io/Milestone-2/).
+1. Navigate to the Heroku link [here](https://github.com/samcat437/Milestone-2).
+2. The Github reposity to view the code can be found [here](https://github.com/samcat437/Milestone-3).
 
 ### Via Gitpod
 

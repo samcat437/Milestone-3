@@ -1,73 +1,97 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h3 class="center-align">Add a Review</h3>
+<div class="row">
+    <div class="col s12 m8 offset-m2">
+        <div class="card-panel">
+            <h3 class="center-align">Add a Review</h3>
+        </div>
+    </div>
+</div>
+
 <!-- add icons -->
 <div class="row">
-    <form class="col s12" method="POST" action="{{ url_for('add_review') }}">
-        <div class="row">
-            <div class="input-field col s12">
-                <input id="review_name" name="review_name" type="text" minlenghth="3" maxlength="50" class="validate"
-                    required>
-                <label for="review_name">Please Name Your Review</label>
+    <div class="col s12 m12">
+        <div class="card">
+            <div class="card-content">
+                <form class="container" method="POST" action="{{ url_for('add_review') }}">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="fas fa-feather-alt"></i>
+                            <input id="review_name" name="review_name" type="text" minlenghth="3" maxlength="50"
+                                class="validate" required>
+                            <label for="review_name">Please Name Your Review</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="fas fa-feather-alt"></i>
+                            <input name="first_name" id="first_name" minlenghth="3"
+                                maxlength="25" type="text" class="validate" required>
+                            <label for="first_name">First Name</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="fas fa-feather-alt"></i>
+                            <input id="last_name" name="last_name" type="text" minlenghth="3" maxlength="25"
+                                class="validate" required>
+                            <label for="last_name">Last Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="fab fa-mailchimp"></i>
+                            <input id="email" name="email" type="email" minlenghth="3" maxlength="25" class="validate"
+                                required>
+                            <label for="email">Email</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="fas fa-calendar-alt"></i>
+                            <input id="wedding_date" name="wedding_date" type="text" class="datepicker validate"
+                                required>
+                            <label for="wedding_date">Wedding Date</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="fas fa-building"></i>
+                            <input id="venue" name="venue" type="text" minlenghth="3" maxlength="25" class="validate"
+                                required>
+                            <label for="venue">Venue</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="fas fa-feather-alt"></i>
+                            <textarea id="review_content" name="review_content" class="materialize-textarea"
+                                required></textarea>
+                            <label for="review_content">How did we do?</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="file-field input-field">
+                            <div class="btn">
+                                <i class="fas fa-camera"></i>
+                                <span>Upload a picture from your big day</span>
+                                <input type="file" multiple>
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text" placeholder="Upload one or more files">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 center-align">
+                            <button class="btn waves-effect waves-light" type="submit" name="action">Submit Review
+                                <i class="material-icons right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-        <div class="row">
-            <div class="input-field col s6">
-                <input placeholder="Placeholder" name="first_name" id="first_name" minlenghth="3" maxlength="25"
-                    type="text" class="validate" required>
-                <label for="first_name">First Name</label>
-            </div>
-            <div class="input-field col s6">
-                <input id="last_name" name="last_name" type="text" minlenghth="3" maxlength="25" class="validate"
-                    required>
-                <label for="last_name">Last Name</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <input id="email" name="email" type="email" minlenghth="3" maxlength="25" class="validate" required>
-                <label for="email">Email</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="fas fa-calendar-alt prefix light-blue-text text-darken-4"></i>
-                <input id="wedding_date" name="wedding_date" type="text" class="datepicker validate" required>
-                <label for="wedding_date">Wedding Date</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <input id="venue" name="venue" type="text" minlenghth="3" maxlength="25" class="validate" required>
-                <label for="venue">Venue</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <textarea id="review_content" name="review_content" class="materialize-textarea" required></textarea>
-                <label for="review_content">How did we do?</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="file-field input-field">
-                <div class="btn">
-                    <span>Upload a picture from your big day</span>
-                    <input type="file" multiple>
-                </div>
-                <div class="file-path-wrapper">
-                    <input class="file-path validate" type="text" placeholder="Upload one or more files">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s12 center-align">
-                <button class="btn waves-effect waves-light" type="submit" name="action">Submit Review
-                    <i class="material-icons right"></i>
-                </button>
-            </div>
-        </div>
-    </form>
+    </div>
 </div>
 
 {% endblock %}

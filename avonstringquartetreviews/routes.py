@@ -9,7 +9,7 @@ from avonstringquartetreviews.models import Review, Details
 
 @app.route("/")
 def home():
-    return render_template("login.html")
+    return render_template("login.html", isLogIn=True)
 
 
 @app.route("/search", methods=["GET", "POST"])
@@ -97,9 +97,6 @@ def my_wedding_details():
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
     wedding_details = list(Details.query.order_by(Details.event_name).all())
-    # error ask Rohit
-    # if Details.event_venue not in wedding_details:
-    #     return render_template("my_wedding.html", username=username)
 
     # pseudo code for only one detail
     return render_template(
@@ -147,7 +144,7 @@ def add_details():
         )
         db.session.add(details)
         db.session.commit()
-        return redirect(url_for("my_wedding_details"))
+        return redirect(url_for("my_wedding_details", detailsAdded = True))
     return render_template("add_details.html")
 
 
@@ -167,7 +164,7 @@ def edit_details(details_id):
     if request.method == "POST": 
         wedding_details.event_name = request.form.get("event_name")
         db.session.commit()
-        return redirect(url_for("my_wedding_details"))
+        return render_template("my_wedding.html", username=username)
     return render_template(
         "edit_details.html", wedding_details=wedding_details)
 
