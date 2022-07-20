@@ -231,6 +231,10 @@ Deployment to Heroku was done in the beginning stages of development, but then l
 1. As a visiting user, I would like to sign out of the account and be taken back to the login page.
 * I have logged out [here](https://github.com/samcat437/Milestone-3/blob/main/avonstringquartetreviews/docs/test-screenshots/logged-out.png)
 
+## Code
+
+Much of the logic was taken from the Code Institute Taskmanager Walkthrough project, which I was advised by my mentor that was fine to do. I also used Materialize framework nav, footer, modal and classes for responsive design.
+
 ## Deployment 
 
 ### Via Heroku 
