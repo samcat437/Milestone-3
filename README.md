@@ -1,6 +1,6 @@
 # Avon String Quartet Planning Website
 
-This website will allow us to effectively gather client event data before the performance has taken place as well as offer a plaform for clients to off feeback following the event.
+This website will allow us to effectively gather client event data before the performance has taken place as well as offer a platform for clients to off feedback following the event.
 
 View the live link [here](https://avon-string-quartet-reviews.herokuapp.com/)
 
@@ -63,7 +63,7 @@ View the live link [here](https://avon-string-quartet-reviews.herokuapp.com/)
 
 ### My Wedding Page
 
-1. Once logged in, the user will be redirected to their profile. As a first time user, they will need to fill click on the "Add Details" form in order to input their event details.    
+1. Once logged in, the user will be redirected to their profile. As a first-time user, they will need to fill click on the "Add Details" form in order to input their event details.    
 3. If they are a returning user, they will be able to view the details previously added or amend them by clicking the "Edit" button.
 
 ### Reviews Page 
@@ -110,7 +110,7 @@ Wireframes were created at project inception and do not totally represent what e
 
 [Python3](https://www.python.org/) : Python3 was the main programming language used to create routes, models and logic in conjunction with Flask in order to render the site.
 
-[Flask](https://flask.palletsprojects.com/en/2.1.x/) : Flask, the microweb framework, is used to link routes and models. THe code is written in Python3. 
+[Flask](https://flask.palletsprojects.com/en/2.1.x/) : Flask, the microweb framework, is used to link routes and models. The code is written in Python3. 
 
 [Jinja](https://flask.palletsprojects.com/en/2.1.x/) : Jinja is used to create templates to populate HTML pages on the site.
 
@@ -132,13 +132,13 @@ Wireframes were created at project inception and do not totally represent what e
 
 This project was very difficult for me, especially with a busy summer work schedule. I was initially slowed down due to having to install flask migrate software, which wasn't covered in the course. The tutors helped me implement this as the when I updated my model and tried to create the database, I could not overwrite it. 
 
-I then had trouble creating a model that would display flash messages. I then tried toasts, but I couldn't figure out how to implement the javascript with jinja. I eventually reverted back to the simple h4, just so that the messages would come through. I spent a lot of time getting the models to work for the confirmation messages of the delete functions. Thankfully they seem functional.
+I then had trouble creating a model that would display flash messages. I then tried toasts, but I couldn't figure out how to implement the Javascript with jinja. I eventually reverted to the simple h4, just so that the messages would come through. I spent a lot of time getting the models to work for the confirmation messages of the delete functions. Thankfully they seem functional.
 
-One bug I didn't squash that I wanted to but ran out of time was that if the user doesn't submit event details and then navigate towards another page and then return, the app will display the my_wedding_details page rather than the my_wedding page. I tried to fix by passing in an detailsAdded argument when the redirect function was called and then using jinja logic, but it didn't work, so I deleted it. More logic is needed and will be added in future builds.
+One bug I didn't squash that I wanted to but ran out of time was that if the user doesn't submit event details and then navigate towards another page and then return, the app will display the my_wedding_details page rather than the my_wedding page. I tried to fix by passing in an detailsAdded argument when the redirect function was called and then using jinja logic, but it didn't work, so I deleted it. Also, if you are a returning user and have deleted your details, it is displaying my_wedding_details rather than wedding_details. More logic is needed and will be added in future builds.
 
-I also was not able to add the admin logic to the ability to edit or delete other's reviews in time. This will be a future feature.
+I also was not able to add the admin logic to stop the ability to edit or delete other's reviews before submission. This will be a future feature.
 
-The flash messages have also ruined the padding a bit, which you can see in the test screenshot on the log out page. If in the future I can get the modals to work, this will improve the user experience.
+The h4 flash messages have also ruined the padding a bit, which you can see in the test screenshot on the log out page. If in the future I can get the modals to work, this will improve the user experience.
 
 ## Testing 
 
@@ -163,7 +163,7 @@ The W3C Markup Validator, W3C CSS Validator and Jshint Services were used to che
 
 [Pep8online](http://pep8online.com/)
 
-[env.py](https://github.com/samcat437/Milestone-3/blob/main/avonstringquartetreviews/docs/code-validation/env.py.png) - The validator was stating that the line was too long, but when I "fixed" this, it broke my heroku app. Slack answers showed I could ignore this.
+[env.py](https://github.com/samcat437/Milestone-3/blob/main/avonstringquartetreviews/docs/code-validation/env.py.png) - The validator was stating that the line was too long, but when I "fixed" this, it broke my Heroku app. Slack answers showed I could ignore this.
 
 [__init__.py](https://github.com/samcat437/Milestone-3/blob/main/avonstringquartetreviews/docs/code-validation/__init__.py.png) - This passed as did app.py.
 
@@ -171,7 +171,7 @@ The W3C Markup Validator, W3C CSS Validator and Jshint Services were used to che
 
 ## Manual Testing 
 
-Manual tests were conducted throughout the development process via the python terminal in order to understand the UX, routing and data population features.
+Manual tests were conducted throughout the development process via the python terminal to understand the UX, routing and data population features.
 
 Deployment to Heroku was done in the beginning stages of development, but then left late and I had forgotten what needed updating. I had a bit of a hard time getting it deployed before the deadline but eventually got there with tutor support pointing out that my env.py file wasn't matching config vars. I then needed to open the command line in Heroku and create the postgresql databases.
 
@@ -200,6 +200,9 @@ Deployment to Heroku was done in the beginning stages of development, but then l
 4. As a returning user, I will be able to view the details I have added previously.
 * I will be directed to my profile page when I return like [this](https://github.com/samcat437/Milestone-3/blob/main/avonstringquartetreviews/docs/test-screenshots/my_wedding.png)
 
+5. As a returning user, I will be able to edit the details I have added previously.
+* I can do this by clicking on the edit button.
+
 #### Review Page
 
 1. As a visiting user, I would like to view previous reviews submitted into the database. 
@@ -219,10 +222,10 @@ Deployment to Heroku was done in the beginning stages of development, but then l
 #### Add Details Page
 
 1. As a visiting user, I would like to add details of my upcoming event to the database.
-* I added details by filling out the form [here](). 
+* I added details by filling out the form [here](https://github.com/samcat437/Milestone-3/blob/main/avonstringquartetreviews/docs/test-screenshots/filling-add-form-1.png). 
 
 2. As a visiting user, I would like to view my details displayed on my wedding page.
-* I can see this on my_wedding page.
+* I can see this on my_wedding [page](https://github.com/samcat437/Milestone-3/blob/main/avonstringquartetreviews/docs/test-screenshots/my_wedding.png)
 
 #### Log Out
 1. As a visiting user, I would like to sign out of the account and be taken back to the login page.
@@ -233,7 +236,7 @@ Deployment to Heroku was done in the beginning stages of development, but then l
 ### Via Heroku 
 
 1. Navigate to the Heroku link [here](https://avon-string-quartet-reviews.herokuapp.com/).
-2. The Github reposity to view the code can be found [here](https://github.com/samcat437/Milestone-3).
+2. The Github repository to view the code can be found [here](https://github.com/samcat437/Milestone-3).
 
 ### Via Gitpod
 
