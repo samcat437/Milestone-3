@@ -335,12 +335,12 @@ def delete_details(details_id):
     The function defines wedding_details by querying Details.
     It then deletes if from the session and commits.
     Arguments: details_id
-    It is redirects the my_wedding_details function.
+    It is redirects the my_wedding function.
     """
     wedding_details = Details.query.get_or_404(details_id)
     db.session.delete(wedding_details)
     db.session.commit()
-    return redirect(url_for("my_wedding_details"))
+    return redirect(url_for("my_wedding", username=session["user"]))
 
 
 @app.route("/logout")
