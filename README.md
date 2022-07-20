@@ -24,7 +24,8 @@ View the live link [here](https://avon-string-quartet-reviews.herokuapp.com/)
 ### Review Page
 
 1. As a visiting user, I would like to view previous reviews submitted into the database. 
-2. As a visiting user, I would like to be able to add a review. 
+2. As a visiting user, I would like to be able to add a review.
+3. As a visiting user, I would like to be able to edit or delete a review.
 
 ### Write a Review Page
 
@@ -179,47 +180,53 @@ Deployment to Heroku was done in the beginning stages of development, but then l
 #### Login Page
 
 1. As a visiting user, I would like to log into the portal.
-* I successfully logged in as an existing user [here]()
+* I successfully logged in as an existing user [here](https://github.com/samcat437/Milestone-3/blob/main/avonstringquartetreviews/docs/test-screenshots/logged%20in.png)
 
 2. As a visiting user, if I don't have an account yet, I would like to register.
-* I successfully logged in as a new user [here]()
+* I successfully logged in as a new user [here](https://github.com/samcat437/Milestone-3/blob/main/avonstringquartetreviews/docs/test-screenshots/registered-user.png)
 
 #### My Wedding Page
 
 1. As a visiting user, I would like to be able to navigate to different sections of the portal and it display data related to my login credentials. 
-* I can view my details that I added here on my_weddings page []()
-* I can view my review that I added here on the review page []()
+* I can view my details that I added here on my_weddings [page](https://github.com/samcat437/Milestone-3/blob/main/avonstringquartetreviews/docs/test-screenshots/my_wedding.png)
+* I can view my review that I added here on the review [page](https://github.com/samcat437/Milestone-3/blob/main/avonstringquartetreviews/docs/test-screenshots/reviews-page.png)
+
 2. As a visiting user, I would like to be welcomed to my profile page.
-* After logging in, I am directed here with a message.
+* After logging in, I am directed [here](https://github.com/samcat437/Milestone-3/blob/main/avonstringquartetreviews/docs/test-screenshots/logged%20in.png) with a message.
+
 3. As a visiting user, I would like to add details regarding my event and see it displayed in on my profile. 
 * I can see this in point 1.
+
 4. As a returning user, I will be able to view the details I have added previously.
-* I will be directed to my profile page when I return like [this]()
+* I will be directed to my profile page when I return like [this](https://github.com/samcat437/Milestone-3/blob/main/avonstringquartetreviews/docs/test-screenshots/my_wedding.png)
 
 #### Review Page
 
 1. As a visiting user, I would like to view previous reviews submitted into the database. 
-* I don't just see my own by other ones [too]()
+* I don't just see my own by other ones [too](https://github.com/samcat437/Milestone-3/blob/main/avonstringquartetreviews/docs/test-screenshots/reviews-page.png)
+
 2. As a visiting user, I would like to be able to add a review. 
-* I can add as many as I want and see it displayed. 
+* I can add as many revies as I want right now and see them displayed. 
 
 #### Write a Review Page
 
 1. As a visiting user, I would like to write a review of the quartet's service at my past event. 
-* I wrote a review by filling out the form [here]()
+* I wrote a review by filling out the form [here](https://github.com/samcat437/Milestone-3/blob/main/avonstringquartetreviews/docs/test-screenshots/add_review.png)
+
 2. As a visiting user, I would like to see my review displayed on the review's page. 
-* I can see this on the reviews.page
+* I can see this on the reviews [page](https://github.com/samcat437/Milestone-3/blob/main/avonstringquartetreviews/docs/test-screenshots/reviews-page.png)
 
 #### Add Details Page
 
 1. As a visiting user, I would like to add details of my upcoming event to the database.
 * I added details by filling out the form [here](). 
+
 2. As a visiting user, I would like to view my details displayed on my wedding page.
 * I can see this on my_wedding page.
 
 #### Log Out
 1. As a visiting user, I would like to sign out of the account and be taken back to the login page.
-* I have logged out [here]()
+* I have logged out [here](https://github.com/samcat437/Milestone-3/blob/main/avonstringquartetreviews/docs/test-screenshots/logged-out.png)
 
 ## Deployment 
 
