@@ -173,7 +173,7 @@ The W3C Markup Validator, W3C CSS Validator and Jshint Services were used to che
 
 Manual tests were conducted throughout the development process via the python terminal to understand the UX, routing and data population features.
 
-Deployment to Heroku was done in the beginning stages of development, but then left late and I had forgotten what needed updating. I had a bit of a hard time getting it deployed before the deadline but eventually got there with tutor support pointing out that my env.py file wasn't matching config vars. I then needed to open the command line in Heroku and create the postgresql databases.
+Deployment to Heroku was done in the beginning stages of development, but then left it late, and I had forgotten what needed updating. I had a bit of a hard time getting it deployed before the deadline but eventually got there with tutor support pointing out that my env.py file wasn't matching config vars. I then needed to open the command line in Heroku and create the postgresql databases.
 
 ### Test Cases based on User Stories
 
@@ -239,10 +239,18 @@ Much of the logic was taken from the Code Institute Taskmanager Walkthrough proj
 
 ### Via Heroku 
 
-1. Navigate to the Heroku link [here](https://avon-string-quartet-reviews.herokuapp.com/).
-2. The Github repository to view the code can be found [here](https://github.com/samcat437/Milestone-3).
+I used Heroku.com to host my app. This website ran the python code and produced a live link which can be found [here](https://avon-string-quartet-reviews.herokuapp.com/). Heroku connects to GitHub and with every push, updates the site on Heroku.
 
-### Via Gitpod
+1. In the gitpod terminal, a requirements.txt and a Procfile were first created by using the following commands:
+pip3 freeze –local > requirements.txt and echo web: python app.py > Procfile
+2. The new files are then committed to GitHub.
+3. In Heroku.com, a new account is created, followed by a new app. Europe was then chosen as the region nearest geographically for free service. Amazon Web Services were also chosen as the provider.
+4. Next, the Deployment Method of Connecting to GitHub is selected.
+Within the search bar, the repository name is entered and the correct repository is selected to connect via the button. Automatic deploys are enabled from the main branch.
+5. In the settings tab, the Config Vars information needed to be filled out very carefully. If these contain discrepencies, the app will not run. These included the following fields: DATABASE_URL, HEROKU_POSTGRESQL_RED_URL, IP, MONGO_DBNAME, MONGO_URI, PORT and SECRET_KEY. These fields correspond to the respective MongoDB, Heroku Postgresql add-on, Port and IP information as appropriate for your project.
+6. "Deploy Branch" was selected and the app is successfully built. 
+
+### Via Gitpod ran locally
 
 1. Navigate to the Github repository at [here](https://github.com/samcat437/Milestone-3).
 2. Choose "Gitpod."

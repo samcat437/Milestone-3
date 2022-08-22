@@ -103,7 +103,7 @@ def login():
                     session["user"] = request.form.get("username").lower()
 
                     # if has user credentials and has entered in Details db
-                    if session["user"] and details_added: 
+                    if session["user"] and details_added:
                         return redirect(url_for(
                             "my_wedding_details", username=existing_user))
                     else:
