@@ -4,6 +4,8 @@ from avonstringquartetreviews import db
 class Review(db.Model):
     # schema for the Review model
     id = db.Column(db.Integer, primary_key=True)
+    # not migrated yet
+    username = db.Column(db.String(25), unique=False, nullable=False)
     review_name = db.Column(db.String(25), unique=True, nullable=False)
     review_first_name = db.Column(db.String(25), unique=False, nullable=False)
     review_last_name = db.Column(db.String(25), unique=False, nullable=False)
