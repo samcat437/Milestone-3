@@ -254,7 +254,7 @@ Within the search bar, the repository name is entered and the correct repository
 
 1. Navigate to the Github repository at [here](https://github.com/samcat437/Milestone-3).
 2. Choose "Gitpod."
-3. In the Bash terminal, type: `set_pg` and then `python3 app.py`
+3. In the Bash terminal, type: `python3 app.py`
 4. Choose "Make Public" when a blue button appears.
 5. Choose "Open Browser" when the options appears.
 

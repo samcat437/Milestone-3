@@ -126,7 +126,7 @@ def login():
 @app.route("/my_wedding/<username>", methods=["GET", "POST"])
 def my_wedding(username):
     """
-    The my_wedding function is called if the user has not previous added event
+    The my_wedding function is called if the user has not previously added event
         details.
     Arguments: username
     If the session["user"] is present, then render the my_wedding template.
@@ -243,13 +243,14 @@ def edit_review(review_id):
     These are then passed the the database session and committed.
     Then the function redirects to the reviews function.
     Arguments: review_id
-    The function returns the edt_review.html template and passes review as
+    The function returns the edit_review.html template and passes review as
         review queried in the first line.
     """
     review = Review.query.get_or_404(review_id)
+    admin = Review.query.get_or_404(username)
 
     # pseudo code:
-    if review.username != session["user"]: 
+    if admin != session["user"]: 
         flash("You can only edit your own review")
         return redirect(url_for(reviews))
    
@@ -332,7 +333,7 @@ def delete_details_confirmation():
         {"username": session["user"]})["username"]
     admin = Details.query.get_or_404(username)
     if author != admin:
-        flash("You can can only edit your own review.")
+        flash("You can can only edit your own details.")
     return redirect(url_for(
         "my_wedding_details", wedding_details=wedding_details))
 
