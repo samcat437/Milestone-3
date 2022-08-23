@@ -188,6 +188,8 @@ def add_review():
     """
     if request.method == "POST":
         review = Review(
+            # added username for resubmit
+            username=session["user"],
             review_name=request.form.get("review_name"),
             review_first_name=request.form.get("first_name"),
             review_last_name=request.form.get("last_name"),
@@ -245,6 +247,12 @@ def edit_review(review_id):
         review queried in the first line.
     """
     review = Review.query.get_or_404(review_id)
+
+    # pseudo code:
+    if review.username != session["user"]: 
+        flash("You can only edit your own review")
+        return redirect(url_for(reviews))
+   
     if request.method == "POST": 
         review.review_name = request.form.get("review_name")
         review.review_date = request.form.get("wedding_date")
