@@ -247,12 +247,10 @@ def edit_review(review_id):
         review queried in the first line.
     """
     review = Review.query.get_or_404(review_id)
-    admin = Review.query.get_or_404(username)
 
-    # pseudo code:
-    if admin != session["user"]: 
+    if review.username != session["user"]:
         flash("You can only edit your own review")
-        return redirect(url_for(reviews))
+        return redirect(url_for("reviews"))
    
     if request.method == "POST": 
         review.review_name = request.form.get("review_name")
