@@ -91,6 +91,10 @@ form label {
   padding-top: 1rem;
 }
 
+label.active {
+  padding-top: 3rem;
+}
+
 .hidden {
   display: none;
 }

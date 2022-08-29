@@ -148,7 +148,7 @@ I was able to resolve the issue of defensive programming of the fact that the pr
 
 The assessment feedback also pointed out that planned features such as the wedding details functionality was not operational in my submitted version. I resolved these associated issues as well. If a user deletes their details via the wedding details page, the my_wedding function will now be called instead, and the user can then resubmit their details anew via the button. This was resolved by the code added on line 170 and 171 in the my_wedding_details app route.
 
-Visually, I removed the scroll bar in the modals that were unsightly.
+Visually, I removed the scroll bar in the modals that were unsightly. I also improved the UI of the forms as the labels were overlapping font awesome icons in the previous version once activated by click activity. This was solved by the addition of lines 94 to 96 in style.css.
 
 The site now works as intended, although if more time allowed, I would like to improve the visual appearance even more and add further features, such as the ability to add photos to the review and further fields to the wedding details to increase the customisability of the site. I have also added to the Deployment section of this file, in which details on the process of Heroku deployment have been added.
 
