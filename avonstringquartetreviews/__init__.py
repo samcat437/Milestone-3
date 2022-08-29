@@ -14,7 +14,6 @@ app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 DATABASE = "avonSQReviews"
 COLLECTION = "users"
-print(os.environ.get("DEVELOPMENT"))
 
 if os.environ.get("DEVELOPMENT") == "True":
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DB_URL")  # local

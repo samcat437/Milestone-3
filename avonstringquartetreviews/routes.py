@@ -159,6 +159,10 @@ def my_wedding_details():
         Details.query.order_by(
             Details.event_name).filter_by(username=session["user"]))
 
+    if wedding_details == []:
+        print(wedding_details)
+        return redirect(url_for("my_wedding", username=session["user"]))
+
     return render_template(
         "my_wedding_details.html",
         wedding_details=wedding_details, username=session["user"])
@@ -310,6 +314,11 @@ def delete_review(review_id):
     It is redirects the reviews function.
     """
     review = Review.query.get_or_404(review_id)
+
+    if review.username != session["user"]:
+        flash("You can only delete your own review")
+        return redirect(url_for("reviews"))
+
     db.session.delete(review)
     db.session.commit()
     return redirect(url_for("reviews"))
@@ -340,14 +349,14 @@ def delete_details_confirmation():
 def delete_details(details_id):
     """
     The function defines wedding_details by querying Details.
-    It then deletes if from the session and commits.
+    It then deletes it from the session and commits.
     Arguments: details_id
     It is redirects the my_wedding function.
     """
     wedding_details = Details.query.get_or_404(details_id)
     db.session.delete(wedding_details)
     db.session.commit()
-    return redirect(url_for("my_wedding", username=session["user"]))
+    return redirect(url_for("my_wedding",  username=session["user"]))
 
 
 @app.route("/logout")
