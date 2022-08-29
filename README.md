@@ -104,15 +104,15 @@ Wireframes were created at project inception and do not totally represent what e
 
 [Javascript ES6](https://www.w3schools.com/js/js_es6.asp) : Javascript ES6 was used to manipulate the DOM in order to create the interactive game. 
 
+[Python3](https://www.python.org/) : Python3 was the main programming language used to create routes, models and logic in conjunction with Flask in order to render the site.
+
+[Jinja](https://flask.palletsprojects.com/en/2.1.x/) : Jinja is used to create templates to populate HTML pages on the site.
+
 ### Frameworks Used
 
 [Materialize](https://materializecss.com/) : Materialize was the main CSS framework used to create a grid system and responsive design for the site.
 
-[Python3](https://www.python.org/) : Python3 was the main programming language used to create routes, models and logic in conjunction with Flask in order to render the site.
-
 [Flask](https://flask.palletsprojects.com/en/2.1.x/) : Flask, the microweb framework, is used to link routes and models. The code is written in Python3. 
-
-[Jinja](https://flask.palletsprojects.com/en/2.1.x/) : Jinja is used to create templates to populate HTML pages on the site.
 
 [Google Fonts](https://fonts.google.com/) : Google Fonts provided the font "Nanum Gothic" and "Gochi Hand" in order to customise and stylise the text. 
 
@@ -128,17 +128,31 @@ Wireframes were created at project inception and do not totally represent what e
 
 [Chrome Dev Tools](https://developer.chrome.com/docs/devtools/) : Chrome Dev tools were utilised for the Javascript console as well as to verify the site's responsiveness and visual presentation. 
 
-### Bugs 
+### Bugs Prior to Resubmission
 
 This project was very difficult for me, especially with a busy summer work schedule. I was initially slowed down due to having to install flask migrate software, which wasn't covered in the course. The tutors helped me implement this as the when I updated my model and tried to create the database, I could not overwrite it. 
 
 I then had trouble creating a model that would display flash messages. I then tried toasts, but I couldn't figure out how to implement the Javascript with jinja. I eventually reverted to the simple h4, just so that the messages would come through. I spent a lot of time getting the models to work for the confirmation messages of the delete functions. Thankfully they seem functional.
 
-One bug I didn't squash that I wanted to but ran out of time was that if the user doesn't submit event details and then navigate towards another page and then return, the app will display the my_wedding_details page rather than the my_wedding page. I tried to fix by passing in an detailsAdded argument when the redirect function was called and then using jinja logic, but it didn't work, so I deleted it. Also, if you are a returning user and have deleted your details, it is displaying my_wedding_details rather than wedding_details. More logic is needed and will be added in future builds.
+One bug I didn't squash in time was that if the user doesn't submit event details and then navigate towards another page and then return, the app will display the my_wedding_details page rather than the my_wedding page. I tried to fix by passing in an detailsAdded argument when the redirect function was called and then using jinja logic, but it didn't work, so I deleted it. Also, if you are a returning user and have deleted your details, it is displaying my_wedding_details rather than wedding_details. More logic is needed and will be added in future builds.
 
 I also was not able to add the admin logic to stop the ability to edit or delete other's reviews before submission. This will be a future feature.
 
 The h4 flash messages have also ruined the padding a bit, which you can see in the test screenshot on the log out page. If in the future I can get the modals to work, this will improve the user experience.
+
+### Bugs Update for Resubmission
+
+Following the submission deadline, I received notification that I hadn't met the mark for the course. While initially upsetting, I understand that this is a part of the learning process. I took the opportunity as a positive experience and enjoyed learning how to improve my application within the resubmission timescale provided. I did find it challenging to revisit the project one month after resubmission. I also had trouble remembering how to set up my workspace again as the pinned workspace in Gitpod had expired. I needed to recode a new env.py file in order to run my project locally in order to implement my new changes. This is all great problem-solving practice for the profession, and I am glad that I was challenged to do it now as a student rather than later on once (hopefully!) employed.
+
+I was able to resolve the issue of defensive programming of the fact that the previous submitted version allowed a non-author to edit or delete another user's review. This was resolved by adding lines 275 to 277 to the edit_review app route and 343 to 345 of the delete_review app route. This was tricky for me to figure out as I had thought at first that I needed to edit the model of the database. I then struggled as the migrations were not transferring to Heroku. However, it turned out that I hadn't needed to do this at all, and I was able to access the username from the Review model without changing anything. 
+
+The assessment feedback also pointed out that planned features such as the wedding details functionality was not operational in my submitted version. I resolved these associated issues as well. If a user deletes their details via the wedding details page, the my_wedding function will now be called instead, and the user can then resubmit their details anew via the button. This was resolved by the code added on line 170 and 171 in the my_wedding_details app route.
+
+Visually, I removed the scroll bar in the modals that were unsightly.
+
+The site now works as intended, although if more time allowed, I would like to improve the visual appearance even more and add further features, such as the ability to add photos to the review and further fields to the wedding details to increase the customisability of the site. I have also added to the Deployment section of this file, in which details on the process of Heroku deployment have been added.
+
+I have retested my code for the new submission, which do match the Testing > Code Validation section for the original submission.
 
 ## Testing 
 
@@ -239,15 +253,15 @@ Much of the logic was taken from the Code Institute Taskmanager Walkthrough proj
 
 ### Via Heroku 
 
-I used Heroku.com to host my app. This website ran the python code and produced a live link which can be found [here](https://avon-string-quartet-reviews.herokuapp.com/). Heroku connects to GitHub and with every push, updates the site on Heroku.
+I used Heroku.com to host my app. This website ran the python code and produced a live link which can be found [here](https://avon-string-quartet-reviews.herokuapp.com/). Heroku connects to GitHub and with every push updates the site on Heroku.
 
-1. In the gitpod terminal, a requirements.txt and a Procfile were first created by using the following commands:
+1. In the gitpod terminal, a requirements.txt and a Procfile are first created by using the following commands:
 pip3 freeze –local > requirements.txt and echo web: python app.py > Procfile
 2. The new files are then committed to GitHub.
-3. In Heroku.com, a new account is created, followed by a new app. Europe was then chosen as the region nearest geographically for free service. Amazon Web Services were also chosen as the provider.
+3. In Heroku.com, a new account is created, followed by a new app. Europe is then chosen as the region nearest geographically for free service. Amazon Web Services were also chosen as the provider.
 4. Next, the Deployment Method of Connecting to GitHub is selected.
-Within the search bar, the repository name is entered and the correct repository is selected to connect via the button. Automatic deploys are enabled from the main branch.
-5. In the settings tab, the Config Vars information needed to be filled out very carefully. If these contain discrepencies, the app will not run. These included the following fields: DATABASE_URL, HEROKU_POSTGRESQL_RED_URL, IP, MONGO_DBNAME, MONGO_URI, PORT and SECRET_KEY. These fields correspond to the respective MongoDB, Heroku Postgresql add-on, Port and IP information as appropriate for your project.
+Within the search bar, the repository name is entered and the correct repository (Milestone-3) is selected to connect via the button. Automatic deploys are enabled from the main branch.
+5. In the settings tab, the Config Vars information needs to be filled out very carefully. If these contain discrepencies, the app will not run. These included the following fields: DATABASE_URL, HEROKU_POSTGRESQL_RED_URL, IP, MONGO_DBNAME, MONGO_URI, PORT and SECRET_KEY. These fields correspond to the respective MongoDB, Heroku Postgresql add-on, Port and IP information as appropriate for your project. These are not disclosed her for security of the site.
 6. "Deploy Branch" was selected and the app is successfully built. 
 
 ### Via Gitpod ran locally

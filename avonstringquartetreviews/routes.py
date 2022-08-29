@@ -22,24 +22,24 @@ def register():
     """
     The register function will run when the register link on the login.html
     page is run.
+
     Arguments: none
 
-    If the request method is post, then the function checks if the username is
+    If the request method is POST, then the function checks if the username is
         in the database.
-        If so, a flash message informs the user and redirects to the the
+        If so, a flash message informs the user and redirects to the
         register function.
-  
-    If not, then the username and password are entered to the Mongodb database
-    stored as register.
+        If not, then the username and password are entered to the MongoDB 
+        database stored as register.
 
     The variable session["user"] is stored as a cookie taken from the username
         field entered in the form.
 
-    A flash message appears on the my_wedding page once that is rendered from
+    A flash message appears on the my_wedding page once ir is rendered from
         the redirected function
         and the username is passed as an argument.
-  
-    The function returns the register.html template.
+        
+        The function returns the register.html template.
     """
     if request.method == "POST":
         # check if username already exists in db
@@ -69,6 +69,7 @@ def login():
     """
     The login function does not take arguments. This function is called by the
         login page being generated.
+
     Arguments: none
 
     The function checks if there is a username appearing in the database
@@ -95,7 +96,7 @@ def login():
             {"username": request.form.get("username").lower()})
         # checks if user has entered in Details db
         details_added = list(Details.query.order_by(Details.event_name).all())
-       
+      
         if existing_user: 
             # ensure hashed password matches import
             if check_password_hash(
@@ -126,10 +127,13 @@ def login():
 @app.route("/my_wedding/<username>", methods=["GET", "POST"])
 def my_wedding(username):
     """
-    The my_wedding function is called if the user has not previously added event
-        details.
+    The my_wedding function is called if the user has not previously added 
+    event details or if the variable is an empty set (meaning they 
+    have deleted their details).
+
     Arguments: username
-    If the session["user"] is present, then render the my_wedding template.
+
+    If the session["user"] is present, then it renders the my_wedding template.
     The function redirects to the login function.
 
     """
@@ -148,10 +152,15 @@ def my_wedding_details():
     """
     The function will be called if the user has added details in the database
         previously.
+
     Arguments: none
 
     The wedding_details variable filters the list of details entered to
-        matching that of the session user.
+        match that of the session user.
+
+    If wedding_details is an empty set, the my_wedding function will be called,
+    passing the username variable with it.
+
     The function returns the my_wedding_details template and passing this list
         and the username variable as arguments.
     """
@@ -160,7 +169,6 @@ def my_wedding_details():
             Details.event_name).filter_by(username=session["user"]))
 
     if wedding_details == []:
-        print(wedding_details)
         return redirect(url_for("my_wedding", username=session["user"]))
 
     return render_template(
@@ -173,6 +181,7 @@ def reviews():
     """
     The function will take the list of reviews entered in the database and
         store it in a variable called reviews.
+
     Arguments: none
 
     It will render the reviews.html template and pass this variable.
@@ -186,8 +195,11 @@ def add_review():
     """
     After the form is submitted, it will store the form data in the review
         variable and then add it to the postgresql database session.
+
     It will then commit the changes and redirect to the review function.
+
     Arguments: none
+
     It returns the render template for the add_review.html page.
     """
     if request.method == "POST":
@@ -213,9 +225,12 @@ def add_details():
     """
     After the form is submitted, it will store the form data in the details
         variable and then add it to the postgresql database session.
+
     It will then commit the changes and redirect to the my_wedding_details
         function, passing detailsAdded as truthy.
+
     Arguments: none
+
     It returns the render template for the add_details.html page.
     """
     if request.method == "POST":
@@ -242,11 +257,16 @@ def edit_review(review_id):
     """
     The function will query Review and retrieve review_id and store it as the
         variable review.
-    Once the button is pressed, if the method is post, the function will
+
+    Once the button is pressed, if the method is POST, the function will
         request the four input fields and store them as variables.
-    These are then passed the the database session and committed.
+
+    These are then passed to the database session and committed.
+
     Then the function redirects to the reviews function.
+
     Arguments: review_id
+
     The function returns the edit_review.html template and passes review as
         review queried in the first line.
     """
@@ -255,8 +275,8 @@ def edit_review(review_id):
     if review.username != session["user"]:
         flash("You can only edit your own review")
         return redirect(url_for("reviews"))
-   
-    if request.method == "POST": 
+  
+    if request.method == "POST":
         review.review_name = request.form.get("review_name")
         review.review_date = request.form.get("wedding_date")
         review.review_venue = request.form.get("venue")
@@ -272,11 +292,15 @@ def edit_details(details_id):
     """
     The function will query Details and retrieve details_id and store it as the
         variable wedding_details.
-    Once the button is pressed, if the method is post, the function will
+
+    Once the button is pressed, if the method is POST, the function will
         request the six input fields and store them as variables.
-    These are then passed the the database session and committed.
+
+    These are then passed to the database session and committed.
     Then the function redirects to the my_wedding_details function.
+
     Arguments: details_id
+
     The function returns the edt_details.html template and passes
     wedding_details as wedding_details queried in the first line.
     """
@@ -309,8 +333,10 @@ def delete_review_confirmation():
 def delete_review(review_id):
     """
     The function defines review by querying Review.
-    It then deletes if from the session and commits.
+    It then deletes it from the session and commits.
+
     Arguments: review_id
+
     It is redirects the reviews function.
     """
     review = Review.query.get_or_404(review_id)
@@ -329,10 +355,14 @@ def delete_details_confirmation():
     """
     This function may not be called except if there is a bug, as the user's
         profile should only render their own entered event data.
+
     It defines author as the session user and then admin of the event details
         the username entered in the database.
+
     If they do not match, the user will be notified.
+
     Arguments: none
+
     The function returns the my_wedding_details function, passing
         wedding_details as previously defined wedding_details.
     """
@@ -350,7 +380,9 @@ def delete_details(details_id):
     """
     The function defines wedding_details by querying Details.
     It then deletes it from the session and commits.
+
     Arguments: details_id
+
     It is redirects the my_wedding function.
     """
     wedding_details = Details.query.get_or_404(details_id)
@@ -364,6 +396,7 @@ def logout():
     """
     The function logs the user out by removing them from the session. The user
         will be notified.
+
     The function redirects to the login function.
     """
     session.pop("user", None)

@@ -63,11 +63,14 @@ nav ul li a {
   line-height: 2;
 }
 
+.modal.open {
+  overflow: hidden;
+}
+
 .social-media li {
   display: inline-block;
 }
 
-/* not working */
 .page-footer {
   background-color:#E3FEEF;
   color: #112A46;
